@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_PROCESSES 10
+
+typedef struct {
+    int id;
+    int priority;
+} Process;
+
+void schedule(Process processes[], int n) {
+    int highestPriorityIndex = 0;
+    for (int i = 1; i < n; i++) {
+        if (processes[i].priority > processes[highestPriorityIndex].priority) {
+            highestPriorityIndex = i;
+        }
+    }
+    printf("Executing Process ID: %d with Priority: %d\n", processes[highestPriorityIndex].id, processes[highestPriorityIndex].priority);
+}
+
+int main() {
+    Process processes[MAX_PROCESSES] = {{1, 2}, {2, 5}, {3, 1}, {4, 4}};
+    int n = 4; // Number of processes
+    schedule(processes, n);
+    return 0;
+}
